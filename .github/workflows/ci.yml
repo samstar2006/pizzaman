@@ -47,21 +47,21 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
-      # - name: Build and sign iOS app using xcodebuild
-      #   env:
-      #     KEYCHAIN_PATH: $RUNNER_TEMP/app-signing.keychain-db
-      #     KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-      #   run: |
-      #     xcodebuild -project pizzaman/Pizza Man.xcodeproj -scheme "Pizza Man" \
-      #     -archivePath $RUNNER_TEMP/list-for-ios.xcarchive \
-      #     -sdk iphoneos \
-      #     -configuration Debug \
-      #     clean archive \
-      #     CODE_SIGN_STYLE=Manual \
-      #     CODE_SIGN_IDENTITY="iPhone Distribution" \
-      #     PROVISIONING_PROFILE_SPECIFIER=${{ secrets.PROVISIONING_PROFILE_SPECIFIER }} \
-      #     DEVELOPMENT_TEAM=${{ secrets.DEVELOPMENT_TEAM_ID }} \
-      #     OTHER_CODE_SIGN_FLAGS="--keychain $KEYCHAIN_PATH"
+      - name: Build and sign iOS app using xcodebuild
+        env:
+          KEYCHAIN_PATH: $RUNNER_TEMP/app-signing.keychain-db
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          xcodebuild -project pizzaman/Pizza Man.xcodeproj -scheme "Pizza Man" \
+          -archivePath $RUNNER_TEMP/pizzaman.xcarchive \
+          -sdk iphoneos \
+          -configuration Debug \
+          clean archive \
+          CODE_SIGN_STYLE=Manual \
+          CODE_SIGN_IDENTITY="iPhone Distribution" \
+          PROVISIONING_PROFILE_SPECIFIER=${{ secrets.PROVISIONING_PROFILE_SPECIFIER }} \
+          DEVELOPMENT_TEAM=${{ secrets.DEVELOPMENT_TEAM_ID }} \
+          OTHER_CODE_SIGN_FLAGS="--keychain $KEYCHAIN_PATH"
 
       # - name: Export the archive
       #   env:
