@@ -60,8 +60,6 @@ jobs:
         env:
           KEYCHAIN_PATH: $RUNNER_TEMP/app-signing.keychain-db
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-          DEVELOPMENT_TEAM_ID: ${{ secrets.DEVELOPMENT_TEAM_ID }}
-          PROVISIONING_PROFILE_SPECIFIER: ${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}
         run: |
           xcodebuild -project "Pizza Man.xcodeproj" -scheme "Pizza Man" \
             -archivePath "$RUNNER_TEMP/Pizza Man.xcarchive" \
