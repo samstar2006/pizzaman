@@ -11,19 +11,9 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # Initial setup for the job
-      - name: Set up job
-        run: echo "Setting up job..."
-
-      # Enable debug logging
-      - name: Set debug logging
-        run: echo "##[debug]Logging enabled"
-
-      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Install Ruby and Fastlane
       - name: Install Ruby and Fastlane
         uses: ruby/setup-ruby@v1
         with:
@@ -34,24 +24,22 @@ jobs:
           gem install bundler -v 2.4.22
           bundle install
 
-      # # Download the IPA file from S3
-      # - name: Download from S3
-      #   run: |
-      #     aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/ipa/list-for-ios.ipa $RUNNER_TEMP/list-for-ios.ipa
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     AWS_REGION: ${{ secrets.AWS_REGION }}
+      - name: Download IPA from S3
+        run: |
+          aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/ipa/pizza-man.ipa $RUNNER_TEMP/pizza-man.ipa
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
 
-      # # Upload IPA to TestFlight using Fastlane
       # - name: Upload to TestFlight
       #   env:
       #     APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
       #     APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
       #     APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
       #   run: |
-      #     bundle exec fastlane upload_ipa_to_testflight
+      #     bundle exec fastlane upload_ipa_to_testflight ipa:$RUNNER_TEMP/pizza-man.ipa
 
-      # # Final step to indicate job completion
       # - name: Complete job
       #   run: echo "Job complete"
+
