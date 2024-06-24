@@ -19,14 +19,18 @@ jobs:
         with:
           ruby-version: '3.0'
 
-      - name: Install Fastlane dependencies
+      - name: Install Fastlane
         run: |
-          gem install bundler -v 2.4.22
-          bundle install
+          gem install fastlane
 
-      - name: Download IPA from S3
+      - name: List and download the latest IPA from S3
         run: |
-          aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/ipa/pizza-man.ipa $RUNNER_TEMP/pizza-man.ipa
+          # List the objects in the bucket, sorted by last modified date, and get the latest one
+          LATEST_IPA=$(aws s3api list-objects-v2 --bucket ${{ secrets.AWS_S3_BUCKET }} --prefix ipa/ --query 'sort_by(Contents, &LastModified)[-1].Key' --output text)
+          echo "Latest IPA: $LATEST_IPA"
+          
+          # Download the latest IPA file
+          aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/${LATEST_IPA} $RUNNER_TEMP/latest-pizza-man.ipa
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -38,8 +42,7 @@ jobs:
       #     APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
       #     APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
       #   run: |
-      #     bundle exec fastlane upload_ipa_to_testflight ipa:$RUNNER_TEMP/pizza-man.ipa
+      #     fastlane run upload_to_testflight ipa:$RUNNER_TEMP/latest-pizza-man.ipa
 
       # - name: Complete job
       #   run: echo "Job complete"
-
