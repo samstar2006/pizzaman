@@ -8,6 +8,11 @@ platform :ios do
       key_content: ENV['APP_STORE_CONNECT_API_KEY']
     )
 
+    build_app(
+      workspace: "Pizza Man.xcodeproj", # Update this if you're using an Xcode project
+      scheme: "Pizza Man"
+    )
+
     upload_to_testflight(
       ipa: options[:ipa],
       api_key: api_key,
