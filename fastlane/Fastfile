@@ -11,6 +11,7 @@ platform :ios do
     upload_to_testflight(
       ipa: options[:ipa],
       api_key: api_key
+      app_identifier: "com.pizza.man" # Ensure this matches exactly
     )
   end
 end
