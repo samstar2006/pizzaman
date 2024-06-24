@@ -53,7 +53,7 @@ jobs:
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
         run: |
           xcodebuild -project pizzaman/Pizza Man.xcodeproj -scheme "Pizza Man" \
-          -archivePath $RUNNER_TEMP/pizzaman.xcarchive \
+          -archivePath $RUNNER_TEMP/Pizza Man.xcarchive \
           -sdk iphoneos \
           -configuration Debug \
           clean archive \
