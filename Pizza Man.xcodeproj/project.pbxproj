@@ -360,10 +360,10 @@
 				INFOPLIST_FILE = PizzaMan/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kehinde.i-am-groot";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pizza.man;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "I-am-groot-profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "pizza-man-ios-app";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -381,10 +381,10 @@
 				INFOPLIST_FILE = PizzaMan/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kehinde.i-am-groot";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pizza.man;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "I-am-groot-profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "pizza-man-ios-app";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
