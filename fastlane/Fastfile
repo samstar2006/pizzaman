@@ -9,7 +9,7 @@ platform :ios do
     )
 
     build_app(
-      workspace: "Pizza Man.xcodeproj", # Update this if you're using an Xcode project
+      project: "Pizza Man.xcodeproj", # Use this for .xcodeproj
       scheme: "Pizza Man"
     )
 
